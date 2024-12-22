@@ -1,0 +1,6 @@
+kafkaprops:
+  topic-name: "temp-sensor-01"
+  cluster-id: "5L6g3nShT-eMCtK--X86sw"
+sensorprops:
+  uuid: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+  name: "temp-sensor-01"

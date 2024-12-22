@@ -4,10 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Dlbingdabd01KafkaListenerServiceApplicationTests {
+class Dlbingdabd01SensorTopicListenerServiceApplicationTests {
 
     @Test
     void contextLoads() {
+        // TBD
     }
 
 }

@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: KafkaListenerService
+
+kafkaprops:
+  topic-name: "default"
+  cluster-id: "default"
+sensorprops:
+  uuid: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+  name: "default"
