@@ -39,7 +39,6 @@ public class SensorTopicListener {
 
     @PostConstruct
     private void init() {
-        log.info("Initializing kafka topic {}", topicName);
-        log.info("Listening for UUID {}", sensorUUID.toString());
+        log.info("Listening for UUID {} on kafka topic {}", sensorUUID.toString(), topicName);
     }
 }
