@@ -2,7 +2,7 @@
 name: Fix
 about: Describe the issue
 title: ''
-labels: ''
+labels: bug
 assignees: ''
 
 ---
