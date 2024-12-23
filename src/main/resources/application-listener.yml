@@ -1,0 +1,4 @@
+spring:
+  kafka:
+    consumer:
+      client-id: "kafka-listener"
