@@ -1,6 +1,8 @@
+
 kafkaprops:
   topic-name: "temp-sensor-01"
   cluster-id: "5L6g3nShT-eMCtK--X86sw"
+  bootstrap-servers: "localhost:9092"
 sensorprops:
   uuid: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
   name: "temp-sensor-01"
