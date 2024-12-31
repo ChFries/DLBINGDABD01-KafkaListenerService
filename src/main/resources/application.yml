@@ -1,6 +1,13 @@
 spring:
   application:
     name: KafkaListenerService
+  datasource:
+    url: jdbc:h2:~/kafkatestdb;AUTO_SERVER=TRUE
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
 
 kafkaprops:
   topic-name: "default"
