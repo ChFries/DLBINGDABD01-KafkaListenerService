@@ -8,13 +8,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
 @Slf4j
 @RequiredArgsConstructor
-@Profile(value = "publisher")
+@Profile(value = "producer")
 public class SensorTopicMockPublisher {
 
     @Value("${kafkaprops.topic-name}")
@@ -34,20 +35,19 @@ public class SensorTopicMockPublisher {
     @PostConstruct
     private void init() {
         log.info("Publishing events for UUID {} on kafka topic {}", sensorUUID.toString(), topicName);
-        publishMockTemperatureEvents();
     }
 
+    @Scheduled(fixedRate = 1000)
     private void publishMockTemperatureEvents() {
+        log.info("hamloo");
         try {
-            Thread.sleep(1000);
             kafkaTemplate.send(topicName, responseMapper.writeValueAsString(SensorMessage.builder()
                             .uuid(sensorUUID)
                             .temperature(Math.random()*100)
                             .sensorName(sensorName)
                             .build())
                     );
-            publishMockTemperatureEvents();
-        } catch (InterruptedException | JsonProcessingException e) {
+        } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }

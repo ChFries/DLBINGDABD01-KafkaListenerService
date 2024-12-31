@@ -2,4 +2,5 @@ spring:
   kafka:
     producer:
       client-id: "kafka-producer"
-
+server:
+  port: 8081
