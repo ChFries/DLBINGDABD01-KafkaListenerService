@@ -1,6 +1,7 @@
 package chfr.iubh.dlbingdabd01kafkalistenerservice.messaging;
 
 
+import chfr.iubh.dlbingdabd01kafkalistenerservice.entities.SensorMessage;
 import chfr.iubh.dlbingdabd01kafkalistenerservice.repository.SensorMessageRepository;
 import chfr.iubh.dlbingdabd01kafkalistenerservice.util.TimeService;
 import com.fasterxml.jackson.core.JsonProcessingException;

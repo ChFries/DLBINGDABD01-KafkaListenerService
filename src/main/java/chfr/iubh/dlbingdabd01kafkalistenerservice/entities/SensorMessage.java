@@ -1,4 +1,4 @@
-package chfr.iubh.dlbingdabd01kafkalistenerservice.messaging;
+package chfr.iubh.dlbingdabd01kafkalistenerservice.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

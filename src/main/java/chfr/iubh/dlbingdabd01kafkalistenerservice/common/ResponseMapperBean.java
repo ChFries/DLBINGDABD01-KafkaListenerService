@@ -1,4 +1,4 @@
-package chfr.iubh.dlbingdabd01kafkalistenerservice.messaging;
+package chfr.iubh.dlbingdabd01kafkalistenerservice.common;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

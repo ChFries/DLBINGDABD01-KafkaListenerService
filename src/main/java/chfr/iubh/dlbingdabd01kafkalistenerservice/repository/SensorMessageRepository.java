@@ -1,6 +1,6 @@
 package chfr.iubh.dlbingdabd01kafkalistenerservice.repository;
 
-import chfr.iubh.dlbingdabd01kafkalistenerservice.messaging.SensorMessage;
+import chfr.iubh.dlbingdabd01kafkalistenerservice.entities.SensorMessage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

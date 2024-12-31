@@ -1,5 +1,6 @@
 package chfr.iubh.dlbingdabd01kafkalistenerservice.messaging;
 
+import chfr.iubh.dlbingdabd01kafkalistenerservice.entities.SensorMessage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import jakarta.annotation.PostConstruct;
