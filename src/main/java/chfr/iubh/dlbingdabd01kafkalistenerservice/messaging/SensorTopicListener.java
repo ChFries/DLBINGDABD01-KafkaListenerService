@@ -2,8 +2,7 @@ package chfr.iubh.dlbingdabd01kafkalistenerservice.messaging;
 
 
 import chfr.iubh.dlbingdabd01kafkalistenerservice.entities.SensorMessage;
-import chfr.iubh.dlbingdabd01kafkalistenerservice.repository.SensorMessageRepository;
-import chfr.iubh.dlbingdabd01kafkalistenerservice.util.TimeService;
+import chfr.iubh.dlbingdabd01kafkalistenerservice.service.SensorMessageStorageService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import jakarta.annotation.PostConstruct;
@@ -24,9 +23,7 @@ public class SensorTopicListener {
 
     private final JsonMapper responseMapper;
 
-    private final SensorMessageRepository sensorMessageRepository;
-
-    private final TimeService timeService;
+    private final SensorMessageStorageService sensorMessageStorageService;
 
     @Value("${kafkaprops.topic-name}")
     private String topicName;
@@ -35,17 +32,20 @@ public class SensorTopicListener {
     private UUID sensorUUID;
 
     @KafkaListener(id = "${kafkaprops.cluster-id}", topics = "${kafkaprops.topic-name}")
-    public void listen(String kafkaMessage) {
+    public void consumeSensorMessage(String kafkaMessage) {
         try {
             SensorMessage message = responseMapper.readValue(kafkaMessage, SensorMessage.class);
-            if (message.getUuid().equals(sensorUUID)) {
+            if (isMessageFromConfiguredSensor(message)) {
                 log.info("Listening to {}", message);
-                message.setDateReceived(timeService.getCurrentTime());
-                sensorMessageRepository.save(message);
+                sensorMessageStorageService.setDateReceivedAndSaveMessage(message);
             }
         } catch (JsonProcessingException e) {
             log.error(e.getMessage());
         }
+    }
+
+    private boolean isMessageFromConfiguredSensor(SensorMessage message) {
+        return message.getUuid().equals(sensorUUID);
     }
 
     @PostConstruct
