@@ -31,16 +31,35 @@ public class SensorTopicListener {
     @Value("${sensorprops.uuid}")
     private UUID sensorUUID;
 
+    @Value("${logging.warning}")
+    private Double warningTemperature;
+
+    @Value("${logging.critical}")
+    private Double criticalTemperature;
+
     @KafkaListener(id = "${kafkaprops.cluster-id}", topics = "${kafkaprops.topic-name}")
     public void consumeSensorMessage(String kafkaMessage) {
         try {
             SensorMessage message = responseMapper.readValue(kafkaMessage, SensorMessage.class);
             if (isMessageFromConfiguredSensor(message)) {
                 log.info("Listening to {}", message);
+                checkWarningTemperature(message);
+                checkCriticalTemperature(message);
                 sensorMessageStorageService.setDateReceivedAndSaveMessage(message);
             }
         } catch (JsonProcessingException e) {
             log.error(e.getMessage());
+        }
+    }
+
+    private void checkWarningTemperature(SensorMessage message) {
+        if(message.getTemperature() >= warningTemperature) {
+            log.warn("Received temperature {} above defined warning threshold of {} from sensor {} ", message.getTemperature(), warningTemperature, message.getSensorName());
+        }
+    }
+    private void checkCriticalTemperature(SensorMessage message) {
+        if(message.getTemperature() >= criticalTemperature) {
+            log.error("Received temperature {} above defined critical threshold of {} from sensor {} ", message.getTemperature(), warningTemperature, message.getSensorName());
         }
     }
 
