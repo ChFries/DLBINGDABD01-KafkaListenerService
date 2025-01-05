@@ -1,5 +1,6 @@
 package chfr.iubh.dlbingdabd01kafkalistenerservice.controller;
 
+import chfr.iubh.dlbingdabd01kafkalistenerservice.DTO.SensorTemperatureAggregateDTO;
 import chfr.iubh.dlbingdabd01kafkalistenerservice.DTO.SensorTemperatureDTO;
 import chfr.iubh.dlbingdabd01kafkalistenerservice.service.TemperatureSensorService;
 import lombok.RequiredArgsConstructor;
@@ -17,5 +18,11 @@ public class TemperatureSensorAPI {
     public ResponseEntity<SensorTemperatureDTO> getCurrentTemperature() {
         SensorTemperatureDTO sensorTemperatureDTO = temperatureSensorService.getLatestRecordedTemperature();
         return ResponseEntity.ok(sensorTemperatureDTO);
+    }
+
+    @GetMapping("/aggregated-data")
+    public ResponseEntity<SensorTemperatureAggregateDTO> getAggregatedTemperature() {
+        SensorTemperatureAggregateDTO aggregateDTO = temperatureSensorService.getAggregateForDefinedTimePeriod();
+        return ResponseEntity.ok(aggregateDTO);
     }
 }

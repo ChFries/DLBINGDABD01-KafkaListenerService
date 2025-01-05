@@ -12,3 +12,6 @@ kafkaprops:
 sensorprops:
   uuid: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
   name: "default"
+
+record:
+  max-retention-minutes: 30
