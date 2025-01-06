@@ -40,7 +40,6 @@ public class SensorTopicMockPublisher {
 
     @Scheduled(fixedRate = 1000)
     private void publishMockTemperatureEvents() {
-        log.info("hamloo");
         try {
             kafkaTemplate.send(topicName, responseMapper.writeValueAsString(SensorMessage.builder()
                             .uuid(sensorUUID)
